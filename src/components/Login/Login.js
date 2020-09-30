@@ -26,7 +26,6 @@ const Login = () => {
             const signInUser = {name: displayName, email}
             setLoggedInUser(signInUser);
             storeAuthToken();
-            history.replace(from);
         })
         .catch(function(error) {
             var errorCode = error.code;
@@ -35,29 +34,30 @@ const Login = () => {
         });
     }
 
-    const handleFbSignIn = () => {
-        const provider = new firebase.auth.FacebookAuthProvider();
-        firebase.auth().signInWithPopup(provider)
-        .then((res) => {
-            const {displayName, email} = res.user;
-            console.log(displayName, email);
-            const signInUser = {name: displayName, email}
-            console.log(signInUser);
-            setLoggedInUser(signInUser);
-            history.replace(from);
-        })
-        .catch((error) =>{
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            var email = error.email;
-            console.log(errorCode, errorMessage, email);
-        })
-    }
+    // const handleFbSignIn = () => {
+    //     const provider = new firebase.auth.FacebookAuthProvider();
+    //     firebase.auth().signInWithPopup(provider)
+    //     .then((res) => {
+    //         const {displayName, email} = res.user;
+    //         console.log(displayName, email);
+    //         const signInUser = {name: displayName, email}
+    //         console.log(signInUser);
+    //         setLoggedInUser(signInUser);
+    //         history.replace(from);
+    //     })
+    //     .catch((error) =>{
+    //         var errorCode = error.code;
+    //         var errorMessage = error.message;
+    //         var email = error.email;
+    //         console.log(errorCode, errorMessage, email);
+    //     })
+    // }
 
     const storeAuthToken = () => {
         firebase.auth().currentUser.getIdToken(/* forceRefresh */ true)
         .then(function(idToken) {
             sessionStorage.setItem('token', idToken);
+            history.replace(from);
           })
         .catch(function(error) {
             // Handle error
@@ -71,7 +71,7 @@ const Login = () => {
             <br/>
             <br/>
             <br/>
-            <button onClick={handleFbSignIn}>Facebook Sign In</button>
+            {/* <button onClick={handleFbSignIn}>Facebook Sign In</button> */}
         </div>
     );
 };
