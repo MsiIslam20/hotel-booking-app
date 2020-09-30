@@ -30,13 +30,13 @@ const Book = () => {
     };
 
     const handleBooking = () => {
-        
+
     }
 
     return (
         <div style={{textAlign: 'center'}}>
             <h1>Hello, {loggedInUser.name}! Let's book a {bedType} Room.</h1>
-            <p>Want a <Link to="/home">different room?</Link> </p>
+            <p>Want a <Link to="/home">Different room?</Link> </p>
 
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Grid container justify="space-around">
