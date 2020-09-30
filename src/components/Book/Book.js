@@ -36,7 +36,7 @@ const Book = () => {
     return (
         <div style={{textAlign: 'center'}}>
             <h1>Hello, {loggedInUser.name}! Let's book a {bedType} Room.</h1>
-            <p>Want a <Link to="/home">Different room?</Link> </p>
+            <p>Want a <Link to="/home">Different room? </Link> </p>
 
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Grid container justify="space-around">
@@ -45,7 +45,7 @@ const Book = () => {
                         variant="inline"
                         format="MM/dd/yyyy"
                         margin="normal"
-                        id="date-picker-inline"
+                        id="checkInDate"
                         label="Check In Date"
                         value={selectedDate.checkIn}
                         onChange={handleCheckIn}
@@ -58,7 +58,7 @@ const Book = () => {
                         variant="inline"
                         format="MM/dd/yyyy"
                         margin="normal"
-                        id="date-picker-inline2"
+                        id="checkOutDate"
                         label="Check Out Date"
                         value={selectedDate.checkOut}
                         onChange={handleCheckOut}
