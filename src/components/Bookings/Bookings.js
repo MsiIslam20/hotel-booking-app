@@ -6,7 +6,7 @@ const Bookings = () => {
     const [loggedInUser , setLoggedInUser] = useContext(UserContext);
 
     useEffect(() => {
-        fetch(`http://localhost:4000/bookings?email=${loggedInUser.email}`, {
+        fetch(`https://hotel-booking-app-61229.web.app/bookings?email=${loggedInUser.email}`, {
             headers: { 
                 'Content-Type': 'application/json',
                 authorization: `Bearer ${sessionStorage.getItem('token')}`

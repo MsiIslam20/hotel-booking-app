@@ -33,7 +33,7 @@ const Book = () => {
 
     const handleBooking = () => {
         const newBookings = {...loggedInUser, ...selectedDate};
-        fetch("http://localhost:4000/addBooking", {
+        fetch("https://hotel-booking-app-61229.web.app/addBooking", {
             method: "POST",
             headers: {'Content-type' : 'application/json'},
             body: JSON.stringify(newBookings)
