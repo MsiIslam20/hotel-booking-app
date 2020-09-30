@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { UserContext } from '../../App';
 import Grid from '@material-ui/core/Grid';
@@ -7,16 +7,32 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+import { Button } from '@material-ui/core';
 
 const Book = () => {
     const {bedType} = useParams();
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
 
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
-    const handleDateChange = (date) => {
-      setSelectedDate(date);
+    const [selectedDate, setSelectedDate] = useState({
+        checkIn : new Date(),
+        checkOut : new Date(),
+    });
+    const handleCheckIn = (date) => {
+        const newDates = {...selectedDate};
+        newDates.checkIn = date;
+        setSelectedDate(date);
     };
-    
+
+    const handleCheckOut = (date) => {
+        const newDates = {...selectedDate};
+        newDates.checkOut = date;
+        setSelectedDate(date);
+    };
+
+    const handleBooking = () => {
+        
+    }
+
     return (
         <div style={{textAlign: 'center'}}>
             <h1>Hello, {loggedInUser.name}! Let's book a {bedType} Room.</h1>
@@ -25,30 +41,35 @@ const Book = () => {
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Grid container justify="space-around">
                     <KeyboardDatePicker
-                    disableToolbar
-                    variant="inline"
-                    format="MM/dd/yyyy"
-                    margin="normal"
-                    id="date-picker-inline"
-                    label="Date picker inline"
-                    value={selectedDate}
-                    onChange={handleDateChange}
-                    KeyboardButtonProps={{
-                        'aria-label': 'change date',
-                    }}
+                        disableToolbar
+                        variant="inline"
+                        format="MM/dd/yyyy"
+                        margin="normal"
+                        id="date-picker-inline"
+                        label="Check In Date"
+                        value={selectedDate.checkIn}
+                        onChange={handleCheckIn}
+                        KeyboardButtonProps={{
+                            'aria-label': 'change date',
+                        }}
                     />
                     <KeyboardDatePicker
-                    margin="normal"
-                    id="date-picker-dialog"
-                    label="Date picker dialog"
-                    format="MM/dd/yyyy"
-                    value={selectedDate}
-                    onChange={handleDateChange}
-                    KeyboardButtonProps={{
-                        'aria-label': 'change date',
-                    }}
+                        disableToolbar
+                        variant="inline"
+                        format="MM/dd/yyyy"
+                        margin="normal"
+                        id="date-picker-inline2"
+                        label="Check Out Date"
+                        value={selectedDate.checkOut}
+                        onChange={handleCheckOut}
+                        KeyboardButtonProps={{
+                            'aria-label': 'change date',
+                        }}
                     />
                 </Grid>
+                <Button onClick={handleBooking} variant="contained" color="primary">
+                    Book Now
+                </Button>
             </MuiPickersUtilsProvider>
         </div>
     );
