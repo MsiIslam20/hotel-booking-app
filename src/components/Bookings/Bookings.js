@@ -17,6 +17,8 @@ const Bookings = () => {
             setBookings(data)
         })
     }, [])
+
+    
     return (
         <div>
             <h2>You Have {bookings.length} Bookings!!</h2>
