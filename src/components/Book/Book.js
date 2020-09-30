@@ -48,14 +48,14 @@ const Book = () => {
     return (
         <div style={{textAlign: 'center'}}>
             <h1>Hello, {loggedInUser.name}! Let's book a {bedType} Room.</h1>
-            <p>Want a <Link to="/home">Different room? </Link> </p>
+            <p>Want a <Link to="/home">Different room?</Link> </p>
 
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Grid container justify="space-around">
                     <KeyboardDatePicker
                     disableToolbar
                     variant="inline"
-                    format="MM/dd/yyyy"
+                    format="dd/MM/yyyy"
                     margin="normal"
                     id="date-picker-inline"
                     label="Date picker inline"
@@ -69,7 +69,7 @@ const Book = () => {
                     margin="normal"
                     id="date-picker-dialog"
                     label="Date picker dialog"
-                    format="MM/dd/yyyy"
+                    format="dd/MM/yyyy"
                     value={selectedDate.checkOut}
                     onChange={handleCheckOut}
                     KeyboardButtonProps={{
